@@ -1,0 +1,20 @@
+# docker run -it -p 8888:8888 -e GRANT_SUDO=yes --user root --device=/dev/ttyACM0 -v "$(pwd):/home/jovyan/work"  test start-notebook.sh --NotebookApp.token=''
+
+
+services:
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+    environment:
+      GRANT_SUDO: "yes"
+    user: root
+    devices:
+      - /dev/ttyACM0
+    volumes:
+      - ./scripts:/home/jovyan/work
+    command: /bin/sh -c "start-notebook.sh --NotebookApp.token=''"
+    #command: ["/bin/bash", "-c", "start-notebook.sh", "--NotebookApp.token=''"]     
+      #  start-notebook.sh --NotebookApp.token=''
