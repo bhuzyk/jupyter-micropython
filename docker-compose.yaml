@@ -11,5 +11,5 @@ services:
     devices:
       - /dev/ttyACM0
     volumes:
-      - ./scripts:/home/jovyan/work
+      - ${VOLUME_SOURCE}/scripts:/home/jovyan/work
     command: /bin/sh -c "start-notebook.sh --NotebookApp.token=''"
